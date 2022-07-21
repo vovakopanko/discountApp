@@ -3,7 +3,8 @@ import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import thunkMiddleware from 'redux-thunk';
 import homeReducer from './reducers/homeReducer';
-
+import favoritesReducer from './reducers/favoritesReducer';
+import profileReducer from './reducers/profileReducer';
 
 const persistConfig = {
   key: 'root',
@@ -11,7 +12,9 @@ const persistConfig = {
 };
 
 let reducers = combineReducers({
-    home: homeReducer,
+  homeReducer,
+  favoritesReducer,
+  profileReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
