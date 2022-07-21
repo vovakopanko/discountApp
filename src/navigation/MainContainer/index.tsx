@@ -4,15 +4,23 @@ import { styles } from "./styles";
 import { bottomTab } from "./constants";
 import { colors } from "../../../styles/palletes";
 import { ProfileActive, DiscountActive, Discounts, Favorites, FavoritesActive, Profile } from "../../../assets/svg";
-import CurrentCard from "../../screen/CurrentCardScreen";
 import FavoritesScreen from "../../screen/FavoritesScreen";
 import HomeScreen from "../../screen/HomeScreen";
 import ProfileScreen from "../../screen/ProfileScreen";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getFakeResponseData } from "../../redux/reducers/homeReducer/homeReducer";
+import { DB } from "../../redux/reducers/homeReducer/DB";
+import { CurrentCard } from "../../screen/CurrentCardScreen";
 
 
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getFakeResponseData(DB));
+  }, []);
   return (
     <NavigationContainer>
       <Tab.Navigator

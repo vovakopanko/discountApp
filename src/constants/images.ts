@@ -1,4 +1,20 @@
 export const images = {
   COMING_SOON: require("./../../assets/img/coming-soon.png"),
+  LIMO: require("./../../assets/img/limo.png"),
+  SPIRITBAR: require("./../../assets/img/spiritsbar.png"),
+  EMBARGO: require("./../../assets/img/embargo.png"),
+  MYATA: require("./../../assets/img/myata.png"),
+  DOMINOS: require("./../../assets/img/dominos.png"),
+  PAPAJOHNS: require("./../../assets/img/papajohns.png"),
+  DODO: require("./../../assets/img/dodo.png"),
+  GADZILA: require("./../../assets/img/godzila.png"),
+  EVO: require("./../../assets/img/evo-logo.png"),
+  VOKA: require("./../../assets/img/logo_voka.png"),
+  SKYENG: require("./../../assets/img/skyeng.png"),
+  SKANDILAB: null,
+  ROBOLAB: require("./../../assets/img/robolab.png"),
+  MUSICALSCHOOL: null,
+  FASOL: require("./../../assets/img/fasol.png"),
+  ONLNE_SCHOOL: null,
   DEFAULT_IMAGE: require("./../../assets/img/noImage.png")
 };

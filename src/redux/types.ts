@@ -1,7 +1,7 @@
+import { InitialState } from "./reducers/homeReducer/homeReducer";
+
 export type TSelectorState = {
-  homeReducer: {
-    name: string;
-  };
+  homeReducer: InitialState;
   favoritesReducer: {
     name: string;
   };

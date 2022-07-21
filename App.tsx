@@ -6,6 +6,7 @@ import reduxStore from "./src/redux/reduxStore";
 
 export default function App() {
   const { store, persistor } = reduxStore();
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

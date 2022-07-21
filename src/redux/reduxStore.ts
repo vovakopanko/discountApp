@@ -1,35 +1,24 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {persistStore, persistReducer} from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import thunkMiddleware from 'redux-thunk';
-import homeReducer from './reducers/homeReducer';
-import favoritesReducer from './reducers/favoritesReducer';
-import profileReducer from './reducers/profileReducer';
+import { persistReducer, persistStore } from "redux-persist";
+import { combineReducers, createStore } from "redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import homeReducer from './reducers/homeReducer/homeReducer';
+
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage: AsyncStorage,
 };
 
-let reducers = combineReducers({
+const rootReducer = combineReducers({
   homeReducer,
-  favoritesReducer,
-  profileReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducers);
-
-type RootReducersType = typeof reducers;
-export type AppStateType = ReturnType<RootReducersType>;
-
-type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never;
-
-export type InfernActionsType<
-  T extends {[key: string]: (...args: any[]) => any},
-> = ReturnType<PropertiesTypes<T>>;
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+const store = createStore(persistedReducer);
+const persistor = persistStore(store);
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export default () => {
-  let store = createStore(persistedReducer, applyMiddleware(thunkMiddleware));
-  let persistor = persistStore(store);
-  return {store, persistor};
+  return { store, persistor };
 };

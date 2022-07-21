@@ -1,6 +1,9 @@
 import { TSelectorState } from "./types";
 
-export const getHomeData = (state: TSelectorState) => state.homeReducer;
-export const getFavoritesData = (state: TSelectorState) => state.favoritesReducer;
-export const getProfileData = (state: TSelectorState) => state.profileReducer;
-
+export const getHomeDataSelector = (state: TSelectorState) => state.homeReducer;
+export const getCategoryListSelector = (state: TSelectorState) =>
+  state.homeReducer.categoryList;
+export const getDiscountDataList = (state: TSelectorState) =>
+  state.homeReducer.data;
+export const getCurrentCategory = (state: TSelectorState) =>
+  state.homeReducer.currentCategory;
