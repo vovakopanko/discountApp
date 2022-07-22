@@ -3,9 +3,7 @@ import { useDispatch } from "react-redux";
 import { Favorites, Heart } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
 import { getFavoritesCard, selectedCurrentCard } from "../../redux/reducers/homeReducer/homeReducer";
-import { CardInfo, Data } from "../Discounts/types";
-
-
+import { CardInfo, Data } from "../TopCategoryList/types";
 
 type FavoritesClickIcon = {
     category: Data;

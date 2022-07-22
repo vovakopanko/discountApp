@@ -2,13 +2,16 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/palletes";
 
 export const styles = StyleSheet.create({
+  cardStyle: {
+    backgroundColor: "#f5f5f5",
+  },
   carouselArea: {
     position: "absolute",
     top: 0,
     height: 100,
     width: "100%",
   },
-  headerCategoryTitle:{
+  headerCategoryTitle: {
     textAlign: "center",
     fontSize: 14,
     padding: 12,
@@ -62,10 +65,10 @@ export const styles = StyleSheet.create({
     marginHorizontal: 16,
   },
   imageSize: {
-    width: 'auto',
+    width: "auto",
     height: 120,
     borderRadius: 16,
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   wrapper: {
     paddingRight: 10,
@@ -120,10 +123,10 @@ export const styles = StyleSheet.create({
   paddingIcon: {
     paddingLeft: 5,
   },
-  borderLine:{
+  borderLine: {
     borderBottomWidth: 1,
     borderColor: colors.GRAY,
     paddingVertical: 10,
     marginHorizontal: 10,
-  }
+  },
 });

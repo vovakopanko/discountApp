@@ -3,7 +3,7 @@
   import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
   import { colors } from "../../../styles/palletes";
   import { images } from "../../constants/images";
-import { CardInfo } from "../Discounts/types";
+import { CardInfo } from "../TopCategoryList/types";
   import { FavoritesClickIcon } from "../FavoritesClickIcon";
   import { PersonalDiscount } from "../PersonalDiscount";
   import { styles } from "./styles";

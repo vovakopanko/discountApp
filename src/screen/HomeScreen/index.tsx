@@ -1,24 +1,33 @@
-import { useEffect, useState } from "react";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { Fire } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
-import TopCategoryList from "../../components/Discounts";
-import { Data } from "../../components/Discounts/types";
+import { MainBottomTabParamList } from "../../components/TopCategoryList/types";
+import { Discounts } from "../../components/Discounts/Discounts";
+import { SelectedCategory } from "../../components/SelectedCategory/SelectedCategory";
 import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
 import {
   getCategoryListSelector,
   getCurrentCategory,
-  getDiscountDataList,
-  getSelectedData,
 } from "../../redux/selectors";
 import { styles } from "./styles";
-import { CategoryList } from "./types";
+import {
+  CategoryList,
+  RootAppStackParams,
+  RootAppStackParamsList,
+} from "./types";
 
 function SelectorDiscountCategory() {
   const categoryList = useSelector(getCategoryListSelector);
   const dispatch = useDispatch();
+
+  const navigation =
+    useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
+
   return (
     <ScrollView horizontal style={{ maxHeight: 40 }}>
       {categoryList.map((category: CategoryList, index: number) => (
@@ -32,6 +41,7 @@ function SelectorDiscountCategory() {
                 index: index,
               })
             );
+            navigation.navigate("SelectedCategoryList");
           }}
           key={category.id}
           style={{
@@ -52,23 +62,26 @@ function SelectorDiscountCategory() {
 }
 
 export default function HomeScreen() {
-  const dataSelector = useSelector(getDiscountDataList);
-  const [data, useData] = useState(dataSelector);
-
-  const selectedData = useSelector(getSelectedData);
+  const Stack = createStackNavigator<RootAppStackParamsList>();
   const currentCategory = useSelector(getCurrentCategory);
-
-  useEffect(() => {
-    useData(dataSelector);
-  }, [dataSelector]);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <SelectorDiscountCategory />
       <View style={styles.borderLine} />
-      <TopCategoryList
-        categoryData={currentCategory === "All discounts" ? data : selectedData}
-      />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          cardStyle: styles.cardStyle,
+        }}
+      >
+        <Stack.Screen
+          name={RootAppStackParams.SelectedCategoryList}
+          component={
+            currentCategory === "All discounts" ? Discounts : SelectedCategory
+          }
+        />
+      </Stack.Navigator>
     </SafeAreaView>
   );
 }

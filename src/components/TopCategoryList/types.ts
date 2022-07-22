@@ -29,6 +29,7 @@ export type MainBottomTabParamList = {
   CurrentCard: {
     params: { title: string; id: number; img: any };
   };
+  SelectedCategoryList: undefined
 };
 
 export type MainStackParamsList = {
@@ -40,4 +41,5 @@ export type MainStackParamsList = {
     title: string;
     id: number;
   };
+  SelectedCategoryList: undefined
 };

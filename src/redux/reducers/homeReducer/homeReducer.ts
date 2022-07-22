@@ -1,5 +1,4 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { DiscountCard } from "./types";
 
 type Card = {
   id: number;
@@ -40,7 +39,7 @@ let initialState: InitialState = {
 
 function flatter(arrCards: any) {
   return arrCards.reduce(
-    (acc: DiscountCard[], val: DiscountCard) =>
+    (acc: Card[], val: Card) =>
       acc.concat(Array.isArray(val) ? flatter(val) : val),
     []
   );
@@ -79,7 +78,7 @@ const discountsSlice = createSlice({
       const cards = current(state).data.map((b) => b.cards);
       const flatterArr = flatter(cards);
       const data = flatterArr.filter(
-        (currentCard: DiscountCard) => currentCard.isSelected === true
+        (currentCard: Card) => currentCard.isSelected === true
       );
       state.favoritesData = data;
     },
