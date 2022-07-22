@@ -1,23 +1,11 @@
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useEffect, useState } from "react";
-import { Platform, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Platform, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { EmptyList } from "../../components/EmptyList";
-import FavoriteList from "../../components/FavoriteList";
+import Favorites from "../../components/Favorites";
 import { getFavoritesData } from "../../redux/selectors";
-
-function Favorites({ data }) {
-  const tabBarHeight = useBottomTabBarHeight();
-  return (
-    <View style={{ justifyContent: "flex-end" }}>
-      <Text style={styles.favoriteTitle}>Favorites</Text>
-      <ScrollView style={{ marginBottom: tabBarHeight - 40 }}>
-        <FavoriteList data={data} />
-      </ScrollView>
-    </View>
-  );
-}
+import { styles } from "./styles";
 
 export default function FavoritesScreen() {
   const [data, setData] = useState([]);
@@ -28,7 +16,7 @@ export default function FavoritesScreen() {
   }, [favoriteData]);
 
   return Platform.OS === "ios" ? (
-    <View style={{ display: "flex", flex: 1, justifyContent: "center" }}>
+    <View style={styles.favoritesBlock}>
       <SafeAreaView>
         {data.length ? (
           <View style={{ height: "100%" }}>
@@ -45,13 +33,3 @@ export default function FavoritesScreen() {
     <EmptyList />
   );
 }
-
-const styles = StyleSheet.create({
-  favoriteTitle: {
-    fontSize: 28,
-    lineHeight: 28,
-    fontWeight: "800",
-    marginHorizontal: 16,
-    paddingVertical: 24,
-  },
-});

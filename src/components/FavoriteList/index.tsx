@@ -3,27 +3,18 @@ import { useDispatch } from "react-redux";
 import { Favorites, Heart } from "../../../assets/svg";
 import { images } from "../../constants/images";
 import {
+  Card,
   getFavoritesCard,
   removeFavoriteCard,
 } from "../../redux/reducers/homeReducer/homeReducer";
-import { DiscountCard } from "../../redux/reducers/homeReducer/types";
 import { styles } from "./styles";
-
-export type Data = {
-  data: {
-    id: number;
-    title: string;
-    img: any;
-    discounts: string;
-    isSelected: boolean;
-  }[];
-};
+import { Data } from "./types";
 
 export default function FavoriteList({ data }: Data) {
   const dispatch = useDispatch();
   return (
     <>
-      {data.map((card: DiscountCard, index: number) => (
+      {data.map((card: Card, index: number) => (
         <View style={styles.favoritesBlock} key={index}>
           <View style={styles.favoritesWrapper}>
             <Text style={styles.favoritesTitle}>{card.discounts}</Text>

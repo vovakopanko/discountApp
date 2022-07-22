@@ -2,6 +2,11 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/palletes";
 
 export const styles = StyleSheet.create({
+  favoritesBlock: {
+    display: "flex",
+    flex: 1,
+    justifyContent: "center",
+  },
   profileBlock: {
     flex: 1,
     alignItems: "center",

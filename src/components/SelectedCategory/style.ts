@@ -8,6 +8,13 @@ export const styles = StyleSheet.create({
       height: 100,
       width: "100%",
     },
+    tittleSelectedCategory:{
+      fontSize: 28,
+      lineHeight: 28,
+      fontWeight: "800",
+      marginHorizontal: 16,
+      marginVertical: 24,
+    },
     headerCategoryTitle: {
       textAlign: "center",
       fontSize: 14,

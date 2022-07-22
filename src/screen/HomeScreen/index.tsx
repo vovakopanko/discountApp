@@ -3,28 +3,24 @@ import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Fire } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
 import { MainBottomTabParamList } from "../../components/TopCategoryList/types";
 import { Discounts } from "../../components/Discounts/Discounts";
 import { SelectedCategory } from "../../components/SelectedCategory/SelectedCategory";
 import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
-import {
-  getCategoryListSelector,
-  getCurrentCategory,
-} from "../../redux/selectors";
 import { styles } from "./styles";
 import {
   CategoryList,
   RootAppStackParams,
   RootAppStackParamsList,
 } from "./types";
+import { useSelectorData } from "../../hooks/useSelectorData";
 
 function SelectorDiscountCategory() {
-  const categoryList = useSelector(getCategoryListSelector);
   const dispatch = useDispatch();
-
+  const { categoryList } = useSelectorData();
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
 
@@ -63,7 +59,7 @@ function SelectorDiscountCategory() {
 
 export default function HomeScreen() {
   const Stack = createStackNavigator<RootAppStackParamsList>();
-  const currentCategory = useSelector(getCurrentCategory);
+  const { currentCategory } = useSelectorData();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

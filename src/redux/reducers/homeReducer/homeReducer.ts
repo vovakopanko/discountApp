@@ -1,6 +1,6 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
-type Card = {
+export type Card = {
   id: number;
   title: string;
   img: any;
@@ -9,7 +9,7 @@ type Card = {
   categoryName?: string;
 };
 
-type Data = {
+export type Data = {
   id: number;
   title: string;
   cards: Card[];
@@ -24,7 +24,7 @@ type CategoryList = {
 export type InitialState = {
   data: Data[];
   categoryList: CategoryList[];
-  favoritesData: any;
+  favoritesData: Card[];
   currentCategory: string;
   selectedData?: Data[];
 };

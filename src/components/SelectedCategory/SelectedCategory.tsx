@@ -2,9 +2,7 @@ import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { images } from "../../constants/images";
-import { CardInfo, Data, MainBottomTabParamList } from "../TopCategoryList/types";
-import { StyleSheet } from "react-native";
-import { colors } from "../../../styles/palletes";
+import { CardInfo, MainBottomTabParamList } from "../TopCategoryList/types";
 import { useDispatch, useSelector } from "react-redux";
 import { getSelectedData } from "../../redux/selectors";
 import {
@@ -13,6 +11,7 @@ import {
 } from "../../redux/reducers/homeReducer/homeReducer";
 import { Favorites, Heart } from "../../../assets/svg";
 import { styles } from "./style";
+import { TFavoritesClickIcon } from "./types";
 
 function PersonalDiscount({ discounts }: { discounts: string }) {
   return (
@@ -22,12 +21,7 @@ function PersonalDiscount({ discounts }: { discounts: string }) {
   );
 }
 
-type FavoritesClickIcon = {
-  category: Data;
-  card: CardInfo;
-};
-
-function FavoritesClickIcon({ category, card }: FavoritesClickIcon) {
+function FavoritesClickIcon({ category, card }: TFavoritesClickIcon) {
   const dispatch = useDispatch();
   return (
     <TouchableOpacity
@@ -55,17 +49,7 @@ export function SelectedCategory() {
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
   return (
     <ScrollView>
-      <Text
-        style={{
-          fontSize: 28,
-          lineHeight: 28,
-          fontWeight: "800",
-          marginHorizontal: 16,
-          marginVertical: 24,
-        }}
-      >
-        {category.title}
-      </Text>
+      <Text style={styles.tittleSelectedCategory}>{category.title}</Text>
       {category.cards.map((card: CardInfo) => (
         <TouchableOpacity
           key={card.id}
@@ -99,4 +83,3 @@ export function SelectedCategory() {
     </ScrollView>
   );
 }
-

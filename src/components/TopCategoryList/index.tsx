@@ -17,13 +17,13 @@ export default function TopCategoryList({ categoryData }: CategoryType) {
     <ScrollView
       style={{ ...styles.contentBlock, marginBottom: tabBarHeight - 32 }}
     >
-      {categoryData.map((category: Data) => (
+      {categoryData.map((category: Data, index:number) => (
         <View key={category.id}>
           {category.cards.length === 0 ? (
             null
           ) : (
             <>
-              <CategoryHeader category={category} />
+              <CategoryHeader category={category} index={index} />
               <CategoryScrollView category={category} navigation={navigation} />
             </>
           )}
