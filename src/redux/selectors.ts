@@ -7,3 +7,5 @@ export const getDiscountDataList = (state: TSelectorState) =>
   state.homeReducer.data;
 export const getCurrentCategory = (state: TSelectorState) =>
   state.homeReducer.currentCategory;
+  export const getFavoritesData = (state: TSelectorState) =>
+  state.homeReducer.favoritesData;

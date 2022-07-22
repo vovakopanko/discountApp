@@ -6,17 +6,13 @@ import { Fire } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
 import TopCategoryList from "../../components/Discounts";
 import { Data } from "../../components/Discounts/types";
-import { DB } from "../../redux/reducers/homeReducer/DB";
 import {
-  getFakeResponseData,
   selectedCategory,
-  // selectedFilter,
 } from "../../redux/reducers/homeReducer/homeReducer";
 import {
   getCategoryListSelector,
   getCurrentCategory,
   getDiscountDataList,
-  getHomeDataSelector,
 } from "../../redux/selectors";
 import { styles } from "./styles";
 
@@ -33,7 +29,6 @@ export default function HomeScreen() {
   const dispatch = useDispatch();
   const categoryList = useSelector(getCategoryListSelector);
   const currentCategory = useSelector(getCurrentCategory);
-  console.log("currentCategory", currentCategory);
   useEffect(() => {
     useData(dataSelector);
   }, [dataSelector]);

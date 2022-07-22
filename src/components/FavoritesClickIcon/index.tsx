@@ -20,7 +20,7 @@ export function FavoritesClickIcon({ category, card }: FavoritesClickIcon) {
           dispatch(
             selectedCurrentCard({
               title: category.title,
-              currentCardTiele: card.title,
+              currentCardTitle: card.title,
               isSelected: !card.isSelected,
             })
           );

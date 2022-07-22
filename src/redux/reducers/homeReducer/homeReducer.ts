@@ -1,5 +1,4 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { images } from "../../../constants/images";
 import { DiscountCard } from "./types";
 
 type Data = {
@@ -32,16 +31,6 @@ const discountsSlice = createSlice({
   name: "home",
   initialState,
   reducers: {
-    // selectedFilter: (state) => {
-    //   const currentIndex = current(state).categoryList.findIndex(
-    //     (el) => el.isSelected === true
-    //   );
-    //   const selectedData = current(state).data.filter(
-    //     (el: Data) =>
-    //       el.title === current(state).categoryList[currentIndex].name
-    //   );
-    //   console.log("selectedData", selectedData);
-    // },
     getFakeResponseData: (state, action: PayloadAction<InitialState>) => {
       state.data = action.payload.data;
       state.categoryList = action.payload.categoryList;
@@ -52,7 +41,7 @@ const discountsSlice = createSlice({
       state,
       actions: PayloadAction<{
         title: string;
-        currentCardTiele: string;
+        currentCardTitle: string;
         isSelected: boolean;
       }>
     ) => {
@@ -60,13 +49,15 @@ const discountsSlice = createSlice({
         (el) => el.title === actions.payload.title
       );
       const currentCard = current(state).data[currentIndex].cards.findIndex(
-        (card) => card.title === actions.payload.currentCardTiele
+        (card) => card.title === actions.payload.currentCardTitle
       );
       state.data[currentIndex].cards[currentCard].isSelected =
         actions.payload.isSelected;
+      state.data[currentIndex].cards[currentCard].categoryName =
+        actions.payload.title;
     },
     getFavoritesCard: (state) => {
-      const cards = current(state).data.map((a) => a.cards);
+      const cards = current(state).data.map((b) => b.cards);
       function flatter(arrCards: any) {
         return arrCards.reduce(
           (acc: DiscountCard[], val: DiscountCard) =>
@@ -83,23 +74,12 @@ const discountsSlice = createSlice({
     removeFavoriteCard: (
       state,
       actions: PayloadAction<{
+        id: number;
         currentCardTiele: string;
         isSelected: boolean;
-        currentSection: string;
       }>
     ) => {
-      const currentIndex = current(state).favoritesData.findIndex(
-        (card) => card.title === actions.payload.currentCardTiele
-      );
-      const delleteCard = current(state).favoritesData[currentIndex];
-      const currentIndexSection = current(state).data.findIndex(
-        (el) => el.title === actions.payload.currentSection
-      );
-      const currentIndexCard = current(state).data[
-        currentIndexSection
-      ].cards.findIndex((el) => el.title === actions.payload.currentCardTiele);
-      state.data[currentIndexSection].cards[currentIndexCard].isSelected =
-        !actions.payload.isSelected;
+      
     },
     selectedCategory: (
       state,
@@ -118,12 +98,6 @@ const discountsSlice = createSlice({
         state.categoryList[currentIndex].isSelected = action.payload.isSelected;
         state.currentCategory = action.payload.name;
       }
-      console.log(
-        "currentCategory",
-        state.currentCategory,
-        "name",
-        action.payload.name
-      ); 
     },
   },
 });
@@ -136,7 +110,6 @@ export const {
   getFavoritesCard,
   removeFavoriteCard,
   selectedCategory,
-  // selectedFilter,
 } = actions;
 
 export default reducer;
