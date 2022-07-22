@@ -11,57 +11,60 @@ import {
   getCategoryListSelector,
   getCurrentCategory,
   getDiscountDataList,
+  getSelectedData,
 } from "../../redux/selectors";
 import { styles } from "./styles";
 import { CategoryList } from "./types";
+
+function SelectorDiscountCategory() {
+  const categoryList = useSelector(getCategoryListSelector);
+  const dispatch = useDispatch();
+  return (
+    <ScrollView horizontal style={{ maxHeight: 40 }}>
+      {categoryList.map((category: CategoryList, index: number) => (
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(
+              selectedCategory({
+                name: category.name,
+                id: category.id,
+                isSelected: !category.isSelected,
+                index: index,
+              })
+            );
+          }}
+          key={category.id}
+          style={{
+            ...styles.categoryItem,
+            backgroundColor: category.isSelected ? colors.BLUE : colors.GRAY,
+          }}
+        >
+          {category.name === "All discounts" && (
+            <View style={styles.paddingIcon}>
+              <Fire />
+            </View>
+          )}
+          <Text style={styles.headerCategoryTitle}>{category.name}</Text>
+        </TouchableOpacity>
+      ))}
+    </ScrollView>
+  );
+}
 
 export default function HomeScreen() {
   const dataSelector = useSelector(getDiscountDataList);
   const [data, useData] = useState(dataSelector);
 
-  const dispatch = useDispatch();
-  const categoryList = useSelector(getCategoryListSelector);
+  const selectedData = useSelector(getSelectedData);
   const currentCategory = useSelector(getCurrentCategory);
+
   useEffect(() => {
     useData(dataSelector);
   }, [dataSelector]);
 
-  const currentIndex = categoryList.findIndex((el) => el.isSelected === true);
-  const selectedData =
-    currentIndex !== -1
-      ? data.filter((el: Data) => el.title === categoryList[currentIndex].name)
-      : data;
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <ScrollView horizontal style={{ maxHeight: 40 }}>
-        {categoryList.map((category: CategoryList, index: number) => (
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(
-                selectedCategory({
-                  name: category.name,
-                  id: category.id,
-                  isSelected: !category.isSelected,
-                  index: index,
-                })
-              );
-            }}
-            key={category.id}
-            style={{
-              ...styles.categoryItem,
-              backgroundColor: category.isSelected ? colors.BLUE : colors.GRAY,
-            }}
-          >
-            {category.name === "All discounts" && (
-              <View style={styles.paddingIcon}>
-                <Fire />
-              </View>
-            )}
-            <Text style={styles.headerCategoryTitle}>{category.name}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
+      <SelectorDiscountCategory />
       <View style={styles.borderLine} />
       <TopCategoryList
         categoryData={currentCategory === "All discounts" ? data : selectedData}

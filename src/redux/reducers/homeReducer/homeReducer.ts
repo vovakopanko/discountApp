@@ -27,6 +27,7 @@ export type InitialState = {
   categoryList: CategoryList[];
   favoritesData: any;
   currentCategory: string;
+  selectedData?: Data[];
 };
 
 let initialState: InitialState = {
@@ -34,6 +35,7 @@ let initialState: InitialState = {
   categoryList: [],
   favoritesData: [],
   currentCategory: null,
+  selectedData: [],
 };
 
 function flatter(arrCards: any) {
@@ -120,6 +122,17 @@ const discountsSlice = createSlice({
         state.categoryList[currentIndex].isSelected = action.payload.isSelected;
         state.currentCategory = action.payload.name;
       }
+
+      const index = state.categoryList.findIndex(
+        (el) => el.isSelected === true
+      );
+      const selectedData =
+        currentIndex !== -1 && state.categoryList[index] !== undefined
+          ? state.data.filter(
+              (el: Data) => el.title === state.categoryList[index].name
+            )
+          : state.data;
+      state.selectedData = selectedData;
     },
   },
 });
