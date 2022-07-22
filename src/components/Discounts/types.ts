@@ -7,7 +7,11 @@ export type Data = {
 export type CategoryList = {
   id: number;
   name: string;
-  isSelected: boolean
+  isSelected: boolean;
+};
+
+export type CategoryType = {
+  categoryData: Data[];
 };
 
 export type CardInfo = {
@@ -23,7 +27,7 @@ export type MainBottomTabParamList = {
   Favorites: undefined;
   Profile: undefined;
   CurrentCard: {
-    params: { title: string; id: number; img: any; };
+    params: { title: string; id: number; img: any };
   };
 };
 

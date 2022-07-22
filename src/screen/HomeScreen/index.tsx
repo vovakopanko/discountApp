@@ -6,21 +6,14 @@ import { Fire } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
 import TopCategoryList from "../../components/Discounts";
 import { Data } from "../../components/Discounts/types";
-import {
-  selectedCategory,
-} from "../../redux/reducers/homeReducer/homeReducer";
+import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
 import {
   getCategoryListSelector,
   getCurrentCategory,
   getDiscountDataList,
 } from "../../redux/selectors";
 import { styles } from "./styles";
-
-type CategoryList = {
-  id: number;
-  name: string;
-  isSelected: boolean;
-};
+import { CategoryList } from "./types";
 
 export default function HomeScreen() {
   const dataSelector = useSelector(getDiscountDataList);
@@ -40,7 +33,7 @@ export default function HomeScreen() {
       : data;
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView horizontal style={{ maxHeight: 40 }}>
         {categoryList.map((category: CategoryList, index: number) => (
           <TouchableOpacity
