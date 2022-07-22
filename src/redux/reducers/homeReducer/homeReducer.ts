@@ -1,10 +1,19 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { DiscountCard } from "./types";
 
+type Card = {
+  id: number;
+  title: string;
+  img: any;
+  discounts: string;
+  isSelected: boolean;
+  categoryName?: string;
+};
+
 type Data = {
   id: number;
   title: string;
-  cards: any;
+  cards: Card[];
 };
 
 type CategoryList = {
@@ -26,6 +35,14 @@ let initialState: InitialState = {
   favoritesData: [],
   currentCategory: null,
 };
+
+function flatter(arrCards: any) {
+  return arrCards.reduce(
+    (acc: DiscountCard[], val: DiscountCard) =>
+      acc.concat(Array.isArray(val) ? flatter(val) : val),
+    []
+  );
+}
 
 const discountsSlice = createSlice({
   name: "home",
@@ -58,13 +75,6 @@ const discountsSlice = createSlice({
     },
     getFavoritesCard: (state) => {
       const cards = current(state).data.map((b) => b.cards);
-      function flatter(arrCards: any) {
-        return arrCards.reduce(
-          (acc: DiscountCard[], val: DiscountCard) =>
-            acc.concat(Array.isArray(val) ? flatter(val) : val),
-          []
-        );
-      }
       const flatterArr = flatter(cards);
       const data = flatterArr.filter(
         (currentCard: DiscountCard) => currentCard.isSelected === true
@@ -79,7 +89,19 @@ const discountsSlice = createSlice({
         isSelected: boolean;
       }>
     ) => {
-      
+      const arrAllCards = current(state).data.map((data: Data) => data.cards);
+      const flatterArr = flatter(arrAllCards);
+      const categoryName = flatterArr.filter(
+        (card: Card) => card.id === actions.payload.id
+      )[0].categoryName;
+      const currentCategoryInx = state.data.findIndex(
+        (category) => category.title === categoryName
+      );
+      const currentCardInx = state.data[currentCategoryInx].cards.findIndex(
+        (card: Card) => card.title === actions.payload.currentCardTiele
+      );
+      state.data[currentCategoryInx].cards[currentCardInx].isSelected =
+        actions.payload.isSelected;
     },
     selectedCategory: (
       state,
