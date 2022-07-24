@@ -61,15 +61,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 16,
   },
-  imageSize: {
-    width: "auto",
-    height: 120,
-    borderRadius: 16,
-    paddingHorizontal: 20,
-  },
-  wrapper: {
-    paddingRight: 10,
-  },
   discountInfo: {
     position: "absolute",
     bottom: 8,
@@ -89,23 +80,6 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center",
-  },
-  subTitleBlock: {
-    flexDirection: "row",
-    maxWidth: 225,
-  },
-  subTitleNewItemBlock: {
-    position: "absolute",
-    top: 6,
-    left: 6,
-  },
-  subTitle: {
-    flex: 1,
-    flexWrap: "wrap",
-    fontSize: 14,
-    lineHeight: 20,
-    fontWeight: "600",
-    paddingTop: 5,
   },
   showMore: {
     display: "flex",

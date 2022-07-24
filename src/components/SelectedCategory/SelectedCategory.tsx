@@ -4,7 +4,7 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { images } from "../../constants/images";
 import { CardInfo, MainBottomTabParamList } from "../TopCategoryList/types";
 import { useDispatch, useSelector } from "react-redux";
-import { getSelectedData } from "../../redux/selectors";
+import { getCategorySelector } from "../../redux/selectors";
 import {
   getFavoritesCard,
   selectedCurrentCard,
@@ -43,10 +43,11 @@ function FavoritesClickIcon({ category, card }: TFavoritesClickIcon) {
 }
 
 export function SelectedCategory() {
-  const selectedData = useSelector(getSelectedData);
-  const category = selectedData[0];
+  const category = useSelector(getCategorySelector);
+
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
+
   return (
     <ScrollView>
       <Text style={styles.tittleSelectedCategory}>{category.title}</Text>

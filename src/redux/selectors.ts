@@ -11,3 +11,7 @@ export const getCurrentCategory = (state: TSelectorState) =>
   state.homeReducer.currentCategory;
 export const getFavoritesData = (state: TSelectorState) =>
   state.homeReducer.favoritesData;
+export const getCategorySelector =  (state: TSelectorState) =>  {
+  const curIndx = state.homeReducer.data.findIndex(el=>el.title===state.homeReducer.selectedData[0].title)
+  return state.homeReducer.data[curIndx]
+}
