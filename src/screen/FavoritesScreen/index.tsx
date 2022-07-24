@@ -11,9 +11,6 @@ import { styles } from "./styles";
 export default function FavoritesScreen() {
   const [data, setData] = useState([]);
   const favoriteData = useSelector(getFavoritesData);
-  const isFocused = useIsFocused();
-
-  
 
   useEffect(() => {
     setData(favoriteData);

@@ -1,4 +1,5 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useRef } from "react";
+import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { Favorites, Heart } from "../../../assets/svg";
 import { images } from "../../constants/images";
