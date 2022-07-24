@@ -18,9 +18,11 @@ const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getFakeResponseData(DB));
   }, []);
+  
   return (
     <NavigationContainer>
       <Tab.Navigator

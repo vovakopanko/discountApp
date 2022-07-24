@@ -13,31 +13,42 @@ import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
 import { styles } from "./styles";
 import {
   CategoryList,
+  PropsEvent,
   RootAppStackParams,
   RootAppStackParamsList,
 } from "./types";
 import { useSelectorData } from "../../hooks/useSelectorData";
+import React, { useEffect } from "react";
 
 function SelectorDiscountCategory() {
-  const dispatch = useDispatch();
   const { categoryList } = useSelectorData();
+
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
+  const dispatch = useDispatch();
+
+  const EventHandler = ({ category, index }: PropsEvent) => {
+    dispatch(
+      selectedCategory({
+        name: category.name,
+        id: category.id,
+        isSelected: !category.isSelected,
+        index: index,
+      })
+    );
+    navigation.navigate(RootAppStackParams.SelectedCategoryList);
+  };
 
   return (
-    <ScrollView horizontal style={{ maxHeight: 40 }}>
+    <ScrollView
+      horizontal
+      style={styles.scrollHeight}
+      showsHorizontalScrollIndicator={false}
+    >
       {categoryList.map((category: CategoryList, index: number) => (
         <TouchableOpacity
           onPress={() => {
-            dispatch(
-              selectedCategory({
-                name: category.name,
-                id: category.id,
-                isSelected: !category.isSelected,
-                index: index,
-              })
-            );
-            navigation.navigate("SelectedCategoryList");
+            EventHandler({ category, index });
           }}
           key={category.id}
           style={{
@@ -50,7 +61,14 @@ function SelectorDiscountCategory() {
               <Fire />
             </View>
           )}
-          <Text style={styles.headerCategoryTitle}>{category.name}</Text>
+          <Text
+            style={{
+              ...styles.headerCategoryTitle,
+              color: category.isSelected ? colors.WHITE : colors.BLACK,
+            }}
+          >
+            {category.name}
+          </Text>
         </TouchableOpacity>
       ))}
     </ScrollView>
@@ -59,7 +77,7 @@ function SelectorDiscountCategory() {
 
 export default function HomeScreen() {
   const Stack = createStackNavigator<RootAppStackParamsList>();
-  const { currentCategory } = useSelectorData();
+  const { isAllDiscounts } = useSelectorData();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -73,9 +91,7 @@ export default function HomeScreen() {
       >
         <Stack.Screen
           name={RootAppStackParams.SelectedCategoryList}
-          component={
-            currentCategory === "All discounts" ? Discounts : SelectedCategory
-          }
+          component={isAllDiscounts ? Discounts : SelectedCategory}
         />
       </Stack.Navigator>
     </SafeAreaView>

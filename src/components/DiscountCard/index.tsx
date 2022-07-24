@@ -15,6 +15,7 @@ export function DiscountCard({ card, navigation, category }) {
             title: card.title,
             id: card.id,
             img: card.img,
+            navigation
           },
         });
       }}

@@ -11,7 +11,7 @@ export function CategoryScrollView({ category, navigation }) {
   const [currentLength, setCurrentLength] = useState(4);
   return (
     <View key={category.id} style={!isNewItems ? styles.categoryHeader : {}}>
-      <ScrollView horizontal>
+      <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         {category.cards.slice(0, currentLength).map((card: CardInfo) => (
           <DiscountCard
             card={card}

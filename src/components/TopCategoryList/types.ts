@@ -1,3 +1,6 @@
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootAppStackParamsList } from "../../screen/HomeScreen/types";
+
 export type Data = {
   id: number;
   title: string;
@@ -22,14 +25,21 @@ export type CardInfo = {
   isSelected: boolean;
 };
 
+export type NavigationProp = StackNavigationProp<RootAppStackParamsList>;
+
 export type MainBottomTabParamList = {
   Discounts: undefined;
   Favorites: undefined;
   Profile: undefined;
   CurrentCard: {
-    params: { title: string; id: number; img: any };
+    params: {
+      title: string;
+      id: number;
+      img: any;
+      navigation: any;
+    };
   };
-  SelectedCategoryList: undefined
+  SelectedCategoryList: undefined;
 };
 
 export type MainStackParamsList = {
@@ -40,6 +50,7 @@ export type MainStackParamsList = {
     img: any;
     title: string;
     id: number;
+    navigation: any;
   };
-  SelectedCategoryList: undefined
+  SelectedCategoryList: undefined;
 };

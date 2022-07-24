@@ -1,3 +1,4 @@
+import { useIsFocused } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { Platform, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,6 +11,9 @@ import { styles } from "./styles";
 export default function FavoritesScreen() {
   const [data, setData] = useState([]);
   const favoriteData = useSelector(getFavoritesData);
+  const isFocused = useIsFocused();
+
+  
 
   useEffect(() => {
     setData(favoriteData);

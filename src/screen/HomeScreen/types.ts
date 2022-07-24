@@ -11,3 +11,8 @@ export type CategoryList = {
   export enum RootAppStackParams {
     SelectedCategoryList = "SelectedCategoryList"
   }
+
+  export type PropsEvent = {
+    category: CategoryList;
+    index: number;
+  };

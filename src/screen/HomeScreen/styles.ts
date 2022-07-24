@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
   },
   headerCategoryTitle: {
     textAlign: "center",
+    lineHeight:16,
     fontSize: 14,
     padding: 12,
     fontWeight: "600",
@@ -121,12 +122,14 @@ export const styles = StyleSheet.create({
     fontWeight: "600",
   },
   paddingIcon: {
-    paddingLeft: 5,
+    paddingLeft: 15,
   },
   borderLine: {
     borderBottomWidth: 1,
     borderColor: colors.GRAY,
     paddingVertical: 10,
-    marginHorizontal: 10,
+  },
+  scrollHeight: {
+    maxHeight: 40,
   },
 });

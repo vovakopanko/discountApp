@@ -3,14 +3,18 @@ import { useNavigation } from "@react-navigation/native";
 import { Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
+import { RootAppStackParams } from "../../screen/HomeScreen/types";
 import { styles } from "../CategoryScrollView/styles";
 import { MainBottomTabParamList } from "../TopCategoryList/types";
 
 export function CategoryHeader({ category, index }) {
   const isNewItems = category.title === "New items";
+
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
+
   const dispatch = useDispatch();
+  
   return (
     <>
       <View
@@ -31,7 +35,7 @@ export function CategoryHeader({ category, index }) {
                   index: index,
                 })
               ),
-                navigation.navigate("SelectedCategoryList");
+                navigation.navigate(RootAppStackParams.SelectedCategoryList);
             }}
           >
             <Text style={styles.btnShowAll}>All</Text>

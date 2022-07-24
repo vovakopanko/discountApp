@@ -1,6 +1,12 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { images } from "../../constants/images";
 import { CardInfo, MainBottomTabParamList } from "../TopCategoryList/types";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +18,8 @@ import {
 import { Favorites, Heart } from "../../../assets/svg";
 import { styles } from "./style";
 import { TFavoritesClickIcon } from "./types";
+import React from "react";
+import Loading from "../Loading/Loading";
 
 function PersonalDiscount({ discounts }: { discounts: string }) {
   return (
@@ -44,12 +52,20 @@ function FavoritesClickIcon({ category, card }: TFavoritesClickIcon) {
 
 export function SelectedCategory() {
   const category = useSelector(getCategorySelector);
-
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
 
+  if (!category) return <Loading />;
+
+  if (!category.cards.length)
+    return (
+      <View style={styles.emptyList}>
+        <Text>This category is empty. Soon something will appear here</Text>
+      </View>
+    );
+
   return (
-    <ScrollView>
+    <ScrollView scrollsToTop={true}>
       <Text style={styles.tittleSelectedCategory}>{category.title}</Text>
       {category.cards.map((card: CardInfo) => (
         <TouchableOpacity
@@ -60,6 +76,7 @@ export function SelectedCategory() {
                 title: card.title,
                 id: card.id,
                 img: card.img,
+                navigation,
               },
             });
           }}
