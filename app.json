@@ -2,14 +2,16 @@
   "expo": {
     "name": "Demo Discount",
     "slug": "Demo_Discount",
-    "version": "1.0.0",
+    "description": "An application to find new discounts for user",
+    "version": "1.0.1",
     "orientation": "portrait",
+    "privacy": "public",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.gif",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#fffef2"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -29,7 +31,6 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "",
     "githubUrl": "https://github.com/vovakopanko/discountApp"
   }
 }

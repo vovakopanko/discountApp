@@ -3,7 +3,7 @@ import {
   useBottomTabBarHeight,
 } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React from "react";
 import { ScrollView, View } from "react-native";
 import { CategoryHeader } from "../CategoryHeader";
 import { CategoryScrollView } from "../CategoryScrollView";

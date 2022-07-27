@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { Fire } from "../../../assets/svg";
 import { colors } from "../../../styles/palletes";
 import { MainBottomTabParamList } from "../../components/TopCategoryList/types";
-import { Discounts } from "../../components/Discounts/Discounts";
+import { DiscountsCategory } from "../../components/Discounts/Discounts";
 import { SelectedCategory } from "../../components/SelectedCategory/SelectedCategory";
 import { selectedCategory } from "../../redux/reducers/homeReducer/homeReducer";
 import { styles } from "./styles";
@@ -18,11 +18,11 @@ import {
   RootAppStackParamsList,
 } from "./types";
 import { useSelectorData } from "../../hooks/useSelectorData";
-import React, { useEffect } from "react";
+import React from "react";
+import { CurrentCard } from "../CurrentCardScreen";
 
 function SelectorDiscountCategory() {
   const { categoryList } = useSelectorData();
-
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
   const dispatch = useDispatch();
@@ -36,7 +36,9 @@ function SelectorDiscountCategory() {
         index: index,
       })
     );
-    navigation.navigate(RootAppStackParams.SelectedCategoryList);
+    navigation.navigate(
+        RootAppStackParams.DiscountsCategory
+    );
   };
 
   return (
@@ -78,7 +80,6 @@ function SelectorDiscountCategory() {
 export default function HomeScreen() {
   const Stack = createStackNavigator<RootAppStackParamsList>();
   const { isAllDiscounts } = useSelectorData();
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <SelectorDiscountCategory />
@@ -90,8 +91,13 @@ export default function HomeScreen() {
         }}
       >
         <Stack.Screen
-          name={RootAppStackParams.SelectedCategoryList}
-          component={isAllDiscounts ? Discounts : SelectedCategory}
+          name={RootAppStackParams.DiscountsCategory}
+          component={isAllDiscounts ? DiscountsCategory : SelectedCategory}
+        />
+        <Stack.Screen
+          name={RootAppStackParams.CurrentCard}
+          component={CurrentCard}
+          options={{ headerShown: false, gestureEnabled: true }}
         />
       </Stack.Navigator>
     </SafeAreaView>

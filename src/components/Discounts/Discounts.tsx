@@ -5,7 +5,7 @@ import Loading from "../Loading/Loading";
 import TopCategoryList from "../TopCategoryList";
 import { Data } from "../TopCategoryList/types";
 
-export function Discounts() {
+export function DiscountsCategory() {
   const [data, useData] = useState<Data[]>([]);
   const dataSelector = useSelector(getDiscountDataList);
 

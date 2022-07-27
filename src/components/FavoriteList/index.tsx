@@ -1,3 +1,5 @@
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { useNavigation } from "@react-navigation/native";
 import { useRef } from "react";
 import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -8,15 +10,32 @@ import {
   getFavoritesCard,
   removeFavoriteCard,
 } from "../../redux/reducers/homeReducer/homeReducer";
+import { MainBottomTabParamList } from "../TopCategoryList/types";
 import { styles } from "./styles";
 import { Data } from "./types";
 
 export default function FavoriteList({ data }: Data) {
   const dispatch = useDispatch();
+
+  const navigation =
+    useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
   return (
     <>
       {data.map((card: Card, index: number) => (
-        <View style={styles.favoritesBlock} key={index}>
+        <TouchableOpacity
+          style={styles.favoritesBlock}
+          key={index}
+          onPress={() => {
+            navigation.navigate("CurrentCard", {
+              params: {
+                title: card.title,
+                id: card.id,
+                img: card.img,
+                navigation,
+              },
+            });
+          }}
+        >
           <View style={styles.favoritesWrapper}>
             <Text style={styles.favoritesTitle}>{card.discounts}</Text>
           </View>
@@ -42,7 +61,7 @@ export default function FavoriteList({ data }: Data) {
           <View style={styles.titleBlock}>
             <Text style={styles.cardTitle}>{card.title}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       ))}
     </>
   );

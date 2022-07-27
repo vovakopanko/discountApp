@@ -35,7 +35,7 @@ export function CategoryHeader({ category, index }) {
                   index: index,
                 })
               ),
-                navigation.navigate(RootAppStackParams.SelectedCategoryList);
+                navigation.navigate(RootAppStackParams.SelectedCategory);
             }}
           >
             <Text style={styles.btnShowAll}>All</Text>

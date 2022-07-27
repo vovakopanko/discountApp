@@ -39,7 +39,8 @@ export type MainBottomTabParamList = {
       navigation: any;
     };
   };
-  SelectedCategoryList: undefined;
+  DiscountsCategory: undefined;
+  SelectedCategory: undefined;
 };
 
 export type MainStackParamsList = {
@@ -52,5 +53,6 @@ export type MainStackParamsList = {
     id: number;
     navigation: any;
   };
-  SelectedCategoryList: undefined;
+  DiscountsCategory: undefined;
+  SelectedCategory: undefined;
 };

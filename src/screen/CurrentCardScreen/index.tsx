@@ -3,20 +3,11 @@ import { images } from "../../constants/images";
 import { MainStackNavigationProps } from "../types";
 import { styles } from "./styles";
 
-export function CurrentCard({ route, navigation }: MainStackNavigationProps) {
+export function CurrentCard({ route }: MainStackNavigationProps) {
   const data = route.params.params;
   return (
     <View style={styles.curentImageBlock}>
-      <View style={styles.btnBlock}>
-        <Text
-          onPress={() => {
-            navigation.goBack();
-          }}
-          style={styles.btnText}
-        >
-          {"<"} Go back
-        </Text>
-      </View>
+      <View style={styles.btnBlock}></View>
       <Image
         source={data.img ? data.img : images.DEFAULT_IMAGE}
         style={styles.imageSize}
