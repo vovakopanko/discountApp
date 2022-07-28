@@ -1,6 +1,7 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import {
+  Animated,
   Image,
   ScrollView,
   Text,
@@ -18,7 +19,7 @@ import {
 import { Favorites, Heart } from "../../../assets/svg";
 import { styles } from "./style";
 import { TFavoritesClickIcon } from "./types";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Loading from "../Loading/Loading";
 
 function PersonalDiscount({ discounts }: { discounts: string }) {
@@ -64,8 +65,17 @@ export function SelectedCategory() {
       </View>
     );
 
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({
+      y: 0,
+      animated: true,
+    });
+  }, [category]);
+
   return (
-    <ScrollView scrollsToTop={true}>
+    <ScrollView ref={scrollRef}>
       <Text style={styles.tittleSelectedCategory}>{category.title}</Text>
       {category.cards.map((card: CardInfo) => (
         <TouchableOpacity
