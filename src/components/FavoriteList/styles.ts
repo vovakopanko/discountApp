@@ -2,6 +2,10 @@ import { StyleSheet } from "react-native";
 import { colors } from "../../../styles/palletes";
 
 export const styles = StyleSheet.create({
+  flatList: {
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+  },
   favoritesBlock: {
     justifyContent: "center",
     alignItems: "center",
