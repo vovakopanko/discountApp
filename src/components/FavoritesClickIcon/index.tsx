@@ -1,6 +1,7 @@
 import { TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { Favorites, Heart } from "../../../assets/svg";
+import { useSelectorData } from "../../hooks/useSelectorData";
 import {
   getFavoritesCard,
   selectedCurrentCard,
@@ -15,8 +16,10 @@ type FavoritesClickIcon = {
 
 export function FavoritesClickIcon({ category, card }: FavoritesClickIcon) {
   const dispatch = useDispatch();
+  const { isAllDiscounts } = useSelectorData();
   return (
     <TouchableOpacity
+      disabled={isAllDiscounts}
       onPress={() => {
         dispatch(
           selectedCurrentCard({
@@ -27,9 +30,9 @@ export function FavoritesClickIcon({ category, card }: FavoritesClickIcon) {
         );
         dispatch(getFavoritesCard());
       }}
-      style={styles.favoritesIcon}
+      style={card.isSelected && styles.favoritesIcon}
     >
-      {card.isSelected ? <Heart /> : <Favorites />}
+      {card.isSelected && <Heart />}
     </TouchableOpacity>
   );
 }
