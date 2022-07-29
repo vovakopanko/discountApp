@@ -16,7 +16,7 @@ export default function FavoritesScreen() {
     setData(favoriteData);
   }, [favoriteData]);
 
-  return Platform.OS === "ios" ? (
+  return (
     <View style={styles.favoritesBlock}>
       <SafeAreaView>
         {data.length ? (
@@ -28,9 +28,5 @@ export default function FavoritesScreen() {
         )}
       </SafeAreaView>
     </View>
-  ) : data.length ? (
-    <Favorites data={data} />
-  ) : (
-    <EmptyList />
   );
 }

@@ -1,7 +1,4 @@
-import {
-  BottomTabNavigationProp,
-  useBottomTabBarHeight,
-} from "@react-navigation/bottom-tabs";
+import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { ScrollView, View } from "react-native";
@@ -11,13 +8,12 @@ import { styles } from "./styles";
 import { CategoryType, Data, MainBottomTabParamList } from "./types";
 
 export default function TopCategoryList({ categoryData }: CategoryType) {
-  const tabBarHeight = useBottomTabBarHeight();
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
 
   return (
     <ScrollView
-      style={{ ...styles.contentBlock, marginBottom: tabBarHeight - 32 }}
+      style={styles.contentBlock}
       showsVerticalScrollIndicator={false}
     >
       {categoryData.map((category: Data, index: number) => (

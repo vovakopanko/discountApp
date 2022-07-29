@@ -1,7 +1,13 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
 import { Fire } from "../../../assets/svg";
@@ -36,9 +42,7 @@ function SelectorDiscountCategory() {
         index: index,
       })
     );
-    navigation.navigate(
-        RootAppStackParams.DiscountsCategory
-    );
+    navigation.navigate(RootAppStackParams.DiscountsCategory);
   };
 
   return (
@@ -82,7 +86,9 @@ export default function HomeScreen() {
   const { isAllDiscounts } = useSelectorData();
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <SelectorDiscountCategory />
+      <View style={styles.selectorPadding}>
+        <SelectorDiscountCategory />
+      </View>
       <View style={styles.borderLine} />
       <Stack.Navigator
         screenOptions={{
