@@ -1,7 +1,10 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { colors } from "../../../styles/palletes";
 
 export const styles = StyleSheet.create({
+  selectorPadding: {
+    paddingTop: Platform.OS === "android" ? 10 : 0,
+  },
   cardStyle: {
     backgroundColor: "#f5f5f5",
   },
@@ -13,7 +16,7 @@ export const styles = StyleSheet.create({
   },
   headerCategoryTitle: {
     textAlign: "center",
-    lineHeight:16,
+    lineHeight: 16,
     fontSize: 14,
     padding: 12,
     fontWeight: "600",

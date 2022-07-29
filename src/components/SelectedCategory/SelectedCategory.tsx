@@ -1,4 +1,7 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabNavigationProp,
+  useBottomTabBarHeight,
+} from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import {
   Animated,
@@ -53,6 +56,7 @@ function FavoritesClickIcon({ category, card }: TFavoritesClickIcon) {
 
 export function SelectedCategory() {
   const category = useSelector(getCategorySelector);
+  const tabBarHeight = useBottomTabBarHeight();
   const navigation =
     useNavigation<BottomTabNavigationProp<MainBottomTabParamList>>();
 
@@ -75,7 +79,7 @@ export function SelectedCategory() {
   }, [category]);
 
   return (
-    <ScrollView ref={scrollRef}>
+    <ScrollView ref={scrollRef} style={{ marginBottom: tabBarHeight - 32 }}>
       <Text style={styles.tittleSelectedCategory}>{category.title}</Text>
       {category.cards.map((card: CardInfo) => (
         <TouchableOpacity

@@ -2,15 +2,13 @@
   "expo": {
     "name": "Demo Discount",
     "slug": "Demo_Discount",
-    "description": "version 1.0.2: update functionality that returns scrollView to the up to top and disable favorite button from Home page",
-    "version": "1.0.2",
+    "description": "version 1.0.4: update libraries for android device",
+    "version": "1.0.4",
     "orientation": "portrait",
     "privacy": "public",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#FFFFFF"
     },
     "updates": {
